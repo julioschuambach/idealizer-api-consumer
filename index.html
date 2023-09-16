@@ -17,6 +17,39 @@
         </header>
 
         <main>
+            <div class = "modal" id = "modal">
+                <div class = "modal-content">
+                    <form id = "modalForm">
+                        <fieldset>
+                            <legend id = "modalTitle">[Title]</legend>
+                            <div class = "form-fields">
+                                <div class = "form-field" id = "ideaIdFormField">
+                                    <label for = "ideaId">Id:</label>
+                                    <input type = "text" name = "ideaId"></input>
+                                </div>
+                                    <div class = "form-field" id = "ideaDescriptionFormField">
+                                    <label for = "ideaDescription">Description:</label>
+                                    <input type = "text" name = "ideaDescription"></input>
+                                </div>
+                                    <div class = "form-field" id = "ideaAuthorFormField">
+                                    <label for = "ideaAuthor">Author:</label>
+                                    <input type = "text" name = "ideaAuthor"></input>
+                                </div>
+                                    <div class = "form-field" id = "ideaExpectationFormField">
+                                    <label for = "ideaExpectation">Expectation:</label>
+                                    <input type = "text" name = "ideaExpectation"></input>
+                                </div>
+                            </div>
+                            <div class = "form-buttons">
+                                <input type = "button" value = "Cancel" onclick = "closeModal()"></input>
+                                <input type = "reset" value = "Reset"></input>
+                                <input type = "submit" value = "Submit"></input>
+                            </div>
+                        </fieldset>
+                    </form>
+                </div>
+            </div>
+
             <div class = "buttons">
                 <input type = "button" onclick = "postIdea()" name = "post" value = "Post">
                 <input type = "button" onclick = "getIdeaById()" name = "getById" value = "GetById">
@@ -59,5 +92,6 @@
         </footer>
 
         <script src = "js/requests.js"></script>
+        <script src = "js/modal.js"></script>
     </body>
 </html>
