@@ -17,6 +17,39 @@
         </header>
 
         <main>
+            <div class = "modal" id = "modal">
+                <div class = "modal-content">
+                    <form id = "modalForm">
+                        <fieldset>
+                            <legend id = "modalTitle">[Title]</legend>
+                            <div class = "form-fields">
+                                <div class = "form-field" id = "ideaIdFormField">
+                                    <label for = "ideaId">Id:</label>
+                                    <input type = "text" name = "ideaId" id = "ideaId"></input>
+                                </div>
+                                    <div class = "form-field" id = "ideaDescriptionFormField">
+                                    <label for = "ideaDescription">Description:</label>
+                                    <input type = "text" name = "ideaDescription" id = "ideaDescription"></input>
+                                </div>
+                                    <div class = "form-field" id = "ideaAuthorFormField">
+                                    <label for = "ideaAuthor">Author:</label>
+                                    <input type = "text" name = "ideaAuthor" id = "ideaAuthor"></input>
+                                </div>
+                                    <div class = "form-field" id = "ideaExpectationFormField">
+                                    <label for = "ideaExpectation">Expectation:</label>
+                                    <input type = "text" name = "ideaExpectation" id = "ideaExpectation"></input>
+                                </div>
+                            </div>
+                            <div class = "form-buttons">
+                                <input type = "button" value = "Cancel" onclick = "closeModal()"></input>
+                                <input type = "reset" value = "Reset"></input>
+                                <input type = "submit" value = "Submit"></input>
+                            </div>
+                        </fieldset>
+                    </form>
+                </div>
+            </div>
+
             <div class = "buttons">
                 <input type = "button" onclick = "postIdea()" name = "post" value = "Post">
                 <input type = "button" onclick = "getIdeaById()" name = "getById" value = "GetById">
@@ -24,7 +57,7 @@
             </div>
 
             <div class = "content">
-                <table>
+                <table id = "contentTable">
                     <thead>
                         <tr>
                             <th>Id</th>
@@ -36,19 +69,7 @@
                             <th>Actions</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <tr>
-                            <td>00000000-0000-0000-0000-000000000000</td>
-                            <td>Test description</td>
-                            <td>Test author</td>
-                            <td>Test expectation</td>
-                            <td>00/00/0000 00:00:00</td>
-                            <td>00/00/0000 00:00:00</td>
-                            <td>
-                                <i class = "bx bx-edit" onclick = "putIdea()"></i>
-                                <i class = "bx bx-trash" onclick = "deleteIdea()"></i>
-                            </td>
-                        </tr>
+                    <tbody id = "tableBody">
                     </tbody>
                 </table>
             </div>
@@ -59,5 +80,7 @@
         </footer>
 
         <script src = "js/requests.js"></script>
+        <script src = "js/modal.js"></script>
+        <script src = "js/tableManager.js"></script>
     </body>
 </html>
