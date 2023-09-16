@@ -10,31 +10,26 @@ document.getElementById("modalForm").addEventListener(
 );
 
 function postIdea() {
-    alert("postIdea()");
     operation = "post";
     openModal(operation);
 }
 
 function getIdeaById() {
-    alert("getIdeaById()");
     operation = "getById";
     openModal(operation);
 }
 
 function getAllIdeas() {
-    alert("getAllIdeas()");
     getAllRequest();
 }
 
 function putIdea(entityData) {
-    alert("putIdea()");
     operation = "put";
     createInMemoryEntity(entityData);
     openModal(operation);
 }
 
 function deleteIdea(entityData) {
-    alert("deleteIdea()");
     createInMemoryEntity(entityData);
     let confirmDelete = confirm("Do you really want to delete '" + inMemoryEntity.description + "'?");
     if (confirmDelete) {
