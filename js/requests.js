@@ -42,15 +42,15 @@ function deleteIdea(entityData) {
 async function request() {
     switch (operation) {
         case "post":
-            postRequest();
+            await postRequest();
             break;
 
         case "getById":
-            getByIdRequest();
+            await getByIdRequest();
             break;
 
         case "put":
-            putRequest();
+            await putRequest();
             break;
     }
 }
