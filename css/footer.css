@@ -1,0 +1,22 @@
+footer {
+    width: 100vw;
+    height: 50px;
+
+    position: fixed;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background-color: black;
+
+    font-size: 18px;
+}
+
+.footer-signature {
+    font-family: var(--montserrat);
+    color: white;
+}

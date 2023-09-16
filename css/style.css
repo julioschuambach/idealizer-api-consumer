@@ -1,0 +1,27 @@
+@import url("header.css");
+@import url("main.css");
+@import url("footer.css");
+
+* {
+    margin: 0px;
+    padding: 0px;
+}
+
+:root {
+    --montserrat: "Montserrat", "Open Sans", sans-serif;
+    --open-sans: "Open Sans", sans-serif;
+}
+
+body {
+    overflow-x: hidden;
+    width: 100vw;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+a:hover {
+    color: #009696;
+}

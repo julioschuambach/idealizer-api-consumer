@@ -1,0 +1,92 @@
+main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.buttons {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+}
+
+.buttons input {
+    width: 250px;
+
+    margin: 15px;
+    padding: 15px;
+
+    border: none;
+    border-radius: 5px;
+
+    font-family: var(--open-sans);
+    font-style: bold;
+    color: white;
+
+    cursor: pointer;
+}
+
+.buttons input[name = "post"] {
+    background-color: #009696;
+}
+
+.buttons input[name = "getById"] {
+    background-color: #006464;
+}
+
+.buttons input[name = "getAll"] {
+    background-color: #003232;
+}
+
+.content {
+    display: flex;
+    max-width: 100vw;
+    overflow-x: scroll;
+}
+
+table {
+    width: 100vw;
+}
+
+table td {
+    text-align: center;
+}
+
+table thead tr {
+    background-color: black;
+    color: white;
+}
+
+table thead tr th {
+    padding: 10px;
+
+    border: none;
+    border-radius: 5px;
+}
+
+table tbody tr td {
+    padding: 10px;
+
+    border: solid 1px black;
+    border-radius: 5px;
+}
+
+.bx:hover {
+    cursor: pointer;
+}
+
+.bx-edit {
+    color: blue;
+}
+
+.bx-trash {
+    color: red;
+}
+
+@media (max-width: 425px) {
+    table thead tr th,
+    table tbody tr td {
+        padding: 5px;
+    }
+}
