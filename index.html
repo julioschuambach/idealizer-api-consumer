@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset = "UTF-8">
+        <meta name = "viewport" content = "width = device-width, initial-scale = 1.0">
+
+        <link href = "css/style.css" rel = "stylesheet">
+        <link href = "https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Open+Sans:wght@300;400;500;600;700&display=swap" rel = "stylesheet">
+        <link href = "https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel = "stylesheet">
+
+        <title>Idealizer</title>
+    </head>
+
+    <body>
+        <header>
+            <p class = "header-title">Idealizer</p>
+        </header>
+
+        <main>
+            <div class = "buttons">
+                <input type = "button" onclick = "postIdea()" name = "post" value = "Post">
+                <input type = "button" onclick = "getIdeaById()" name = "getById" value = "GetById">
+                <input type = "button" onclick = "getAllIdeas()" name = "getAll" value = "GetAll">
+            </div>
+
+            <div class = "content">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Description</th>
+                            <th>Author</th>
+                            <th>Expectation</th>
+                            <th>Created date</th>
+                            <th>Last updated date</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>00000000-0000-0000-0000-000000000000</td>
+                            <td>Test description</td>
+                            <td>Test author</td>
+                            <td>Test expectation</td>
+                            <td>00/00/0000 00:00:00</td>
+                            <td>00/00/0000 00:00:00</td>
+                            <td>
+                                <i class = "bx bx-edit" onclick = "putIdea()"></i>
+                                <i class = "bx bx-trash" onclick = "deleteIdea()"></i>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </main>
+
+        <footer>
+            <p class = "footer-signature"><a href = "https://github.com/julioschuambach" target = "_blank"><i class = "bx bxl-github"></i> /julioschuambach</a></p>
+        </footer>
+
+        <script src = "js/requests.js"></script>
+    </body>
+</html>
