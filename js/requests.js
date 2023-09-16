@@ -1,5 +1,6 @@
 let url = "https://localhost:7290/ideas";
 let operation = "";
+let operationEntity;
 
 document.getElementById("modalForm").addEventListener(
     "submit", async (e) => {
@@ -25,8 +26,11 @@ function getAllIdeas() {
     getAllRequest();
 }
 
-function putIdea() {
+function putIdea(entityData) {
     alert("putIdea()");
+    operation = "put";
+    operationEntity = new Idea(entityData);
+    openModal(operation);
 }
 
 function deleteIdea() {
@@ -41,6 +45,10 @@ async function request() {
 
         case "getById":
             getByIdRequest();
+            break;
+
+        case "put":
+            putRequest();
             break;
     }
 }
@@ -63,7 +71,7 @@ async function postRequest() {
     }).then( async (response) => {
         if (response.ok) {
             alert("postRequest: OK!");
-            finalizeRequest();
+            closeModal();
         } else {
             alert("postRequest: NOT OK!");
         }
@@ -84,7 +92,7 @@ async function getByIdRequest() {
             if (response.ok) {
                 alert("getByIdRequest: OK!");
                 insertIntoTable(await response.json());
-                finalizeRequest();
+                closeModal();
             } else {
                 alert("getByIdRequest: NOT OK!");
             }
@@ -109,11 +117,43 @@ async function getAllRequest() {
     });
 }
 
-function finalizeRequest() {
-    resetForm();
-    closeModal();
+async function putRequest() {
+    await fetch(url + "/" + operationEntity.id, {
+        method: "PUT",
+        body: JSON.stringify({
+            "description": document.getElementById("ideaDescription").value,
+            "expectation": document.getElementById("ideaExpectation").value
+        }),
+        headers: {
+            "Content-type": "application/json; charset = UTF-8"
+        }
+    }).then( async (response) => {
+        if (response.ok) {
+            alert("putRequest: OK!");
+            closeModal();
+        } else {
+            alert("putRequest: NOT OK!");
+        }
+    }).catch( (error) => {
+        alert("putRequest: CATCH -> " + error.message);
+    }).finally( () => {
+        operationEntity = null;
+    });
 }
 
 function resetForm() {
     document.getElementById("modalForm").reset();
+}
+
+class Idea {
+    constructor(entityData) {
+        let entityChildren = entityData.children;
+
+        this.id = entityChildren[0].innerHTML;
+        this.description = entityChildren[1].innerHTML;
+        this.author = entityChildren[2].innerHTML;
+        this.expectation = entityChildren[3].innerHTML;
+        this.createdDate = entityChildren[4].innerHTML;
+        this.lastUpdatedDate = entityChildren[5].innerHTML;
+    }
 }

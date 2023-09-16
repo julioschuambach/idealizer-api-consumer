@@ -14,12 +14,13 @@ function openModal(operation) {
 function closeModal() {
     let modal = document.getElementById("modal");
     modal.classList.remove("show-modal");
+    resetForm();
 }
 
 function showFields(operation) {
     switch (operation) {
         case "post":
-            modalTitle.innerHTML = "New register"
+            modalTitle.innerHTML = "New register";
             ideaIdFormField.style.display = "none";
             ideaDescriptionFormField.style.display = "block";
             ideaAuthorFormField.style.display = "block";
@@ -27,11 +28,21 @@ function showFields(operation) {
             break;
 
         case "getById":
-            modalTitle.innerHTML = "Search"
+            modalTitle.innerHTML = "Search";
             ideaIdFormField.style.display = "block";
             ideaDescriptionFormField.style.display = "none";
             ideaAuthorFormField.style.display = "none";
             ideaExpectationFormField.style.display = "none";
+            break;
+
+        case "put":
+            modalTitle.innerHTML = "Update";
+            ideaIdFormField.style.display = "none";
+            ideaDescriptionFormField.style.display = "block";
+            ideaAuthorFormField.style.display = "none";
+            ideaExpectationFormField.style.display = "block";
+            document.getElementById("ideaDescription").value = operationEntity.description;
+            document.getElementById("ideaExpectation").value = operationEntity.expectation;
             break;
     }
 }
