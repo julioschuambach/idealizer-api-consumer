@@ -29,6 +29,6 @@ function insertIntoRow(tr, data) {
 function insertActions(tr) {
     let td = document.createElement("td");
 
-    td.innerHTML = '<i class = "bx bx-edit" onclick = "putIdea(this.parentNode.parentNode)"></i><i class = "bx bx-trash" onclick = "deleteIdea()"></i>';
+    td.innerHTML = '<i class = "bx bx-edit" onclick = "putIdea(this.parentNode.parentNode)"></i><i class = "bx bx-trash" onclick = "deleteIdea(this.parentNode.parentNode)"></i>';
     tr.appendChild(td);
 }

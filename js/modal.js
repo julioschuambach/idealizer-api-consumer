@@ -14,6 +14,7 @@ function openModal(operation) {
 function closeModal() {
     let modal = document.getElementById("modal");
     modal.classList.remove("show-modal");
+    deleteInMemoryEntity();
     resetForm();
 }
 
@@ -41,8 +42,8 @@ function showFields(operation) {
             ideaDescriptionFormField.style.display = "block";
             ideaAuthorFormField.style.display = "none";
             ideaExpectationFormField.style.display = "block";
-            document.getElementById("ideaDescription").value = operationEntity.description;
-            document.getElementById("ideaExpectation").value = operationEntity.expectation;
+            document.getElementById("ideaDescription").value = inMemoryEntity.description;
+            document.getElementById("ideaExpectation").value = inMemoryEntity.expectation;
             break;
     }
 }

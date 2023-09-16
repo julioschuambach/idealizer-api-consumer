@@ -1,6 +1,6 @@
 let url = "https://localhost:7290/ideas";
 let operation = "";
-let operationEntity;
+let inMemoryEntity;
 
 document.getElementById("modalForm").addEventListener(
     "submit", async (e) => {
@@ -29,12 +29,19 @@ function getAllIdeas() {
 function putIdea(entityData) {
     alert("putIdea()");
     operation = "put";
-    operationEntity = new Idea(entityData);
+    createInMemoryEntity(entityData);
     openModal(operation);
 }
 
-function deleteIdea() {
+function deleteIdea(entityData) {
     alert("deleteIdea()");
+    createInMemoryEntity(entityData);
+    let confirmDelete = confirm("Do you really want to delete '" + inMemoryEntity.description + "'?");
+    if (confirmDelete) {
+        deleteRequest(inMemoryEntity.id);
+    } else {
+        deleteInMemoryEntity();
+    }
 }
 
 async function request() {
@@ -118,7 +125,7 @@ async function getAllRequest() {
 }
 
 async function putRequest() {
-    await fetch(url + "/" + operationEntity.id, {
+    await fetch(url + "/" + inMemoryEntity.id, {
         method: "PUT",
         body: JSON.stringify({
             "description": document.getElementById("ideaDescription").value,
@@ -137,7 +144,23 @@ async function putRequest() {
     }).catch( (error) => {
         alert("putRequest: CATCH -> " + error.message);
     }).finally( () => {
-        operationEntity = null;
+        deleteInMemoryEntity();
+    });
+}
+
+async function deleteRequest(id) {
+    await fetch(url + "/" + id, {
+        method: "DELETE"
+    }).then( async (response) => {
+        if (response.ok) {
+            alert("deleteRequest: OK!");
+        } else {
+            alert("deleteRequest: NOT OK!");
+        }
+    }).catch( (error) => {
+        alert("deleteRequest: CATCH -> " + error.message);
+    }).finally( () => {
+        deleteInMemoryEntity();
     });
 }
 
@@ -156,4 +179,12 @@ class Idea {
         this.createdDate = entityChildren[4].innerHTML;
         this.lastUpdatedDate = entityChildren[5].innerHTML;
     }
+}
+
+function createInMemoryEntity(entityData) {
+    inMemoryEntity = new Idea(entityData);
+}
+
+function deleteInMemoryEntity() {
+    inMemoryEntity = null;
 }
