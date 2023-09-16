@@ -16,11 +16,13 @@ function postIdea() {
 
 function getIdeaById() {
     alert("getIdeaById()");
-    openModal("getById");
+    operation = "getById";
+    openModal(operation);
 }
 
 function getAllIdeas() {
     alert("getAllIdeas()");
+    getAllRequest();
 }
 
 function putIdea() {
@@ -35,6 +37,10 @@ async function request() {
     switch (operation) {
         case "post":
             postRequest();
+            break;
+
+        case "getById":
+            getByIdRequest();
             break;
     }
 }
@@ -54,7 +60,7 @@ async function postRequest() {
         headers: {
             "Content-type": "application/json; charset = UTF-8"
         }
-    }).then( (response) => {
+    }).then( async (response) => {
         if (response.ok) {
             alert("postRequest: OK!");
             finalizeRequest();
@@ -63,6 +69,43 @@ async function postRequest() {
         }
     }).catch ( (error) => {
         alert("postRequest: CATCH -> " + error.message);
+    });
+}
+
+async function getByIdRequest() {
+    let id = document.getElementById("ideaId").value;
+
+    if (id == "") {
+        alert("Invalid identifier.");
+    } else {
+        await fetch(url + "/" + id, {
+            method: "GET"
+        }).then( async (response) => {
+            if (response.ok) {
+                alert("getByIdRequest: OK!");
+                insertIntoTable(await response.json());
+                finalizeRequest();
+            } else {
+                alert("getByIdRequest: NOT OK!");
+            }
+        }).catch( (error) => {
+            alert("getByIdRequest: CATCH -> " + error.message);
+        });
+    }
+}
+
+async function getAllRequest() {
+    await fetch(url, {
+        method: "GET"
+    }).then( async (response) => {
+        if (response.ok) {
+            alert("getAllRequest: OK!");
+            insertAllIntoTable(await response.json());
+        } else {
+            alert("getAllRequest: NOT OK!");
+        }
+    }).catch( (error) => {
+        alert("getAllRequest: CATCH -> " + error.message);
     });
 }
 
